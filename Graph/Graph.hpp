@@ -6,6 +6,7 @@
     #include <fstream>
     #include <string.h> 
     #include <algorithm> 
+    #include <exception>
     #include <list> 
 
     #include "../constants.hpp"

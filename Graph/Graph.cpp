@@ -18,11 +18,11 @@ Graph::Graph(string filename)
     int swap0, swap1;
     fstream in(inputpath + filename);
 
-    if(!in)
+    if (!in)
     {
-        this->V = 0;
-        adj = new list<int>[V];
+        throw exception();
     }
+    
 
     in >> this->V;
     adj = new list<int>[V];
@@ -34,6 +34,8 @@ Graph::Graph(string filename)
 
         addEdge((swap0-1), (swap1-1));
     }
+
+    in.close();
     
 }
 
