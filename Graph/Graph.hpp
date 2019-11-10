@@ -42,6 +42,9 @@
             // Utility function to check if edge u-v is a valid next edge in 
             // Eulerian trail or circuit 
             bool isValidNextEdge(int u, int v); 
+
+            // Check if is eulerian
+            bool isEulerian();
     };
 
 #endif // GRAPH

@@ -50,7 +50,12 @@ int main()
                 getline(cin, filename, '\n');
                 
                 graph = new Graph(filename);
-                graph->printEulerTour();
+
+                if(graph->isEulerian()){
+                    graph->printEulerTour();
+                } else {
+                    cout << "Grafo inserido nao euleriano!" << endl;
+                }
             }
             catch(const std::exception& e)
             {

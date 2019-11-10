@@ -51,6 +51,7 @@ void Graph::printEulerTour()
             { u = i; break; } 
 
     // Print tour starting from oddv 
+    cout << (u+1) << " "; 
     printEulerUtil(u); 
     cout << endl; 
 } 
@@ -67,7 +68,8 @@ void Graph::printEulerUtil(int u)
         // If edge u-v is not removed and it's a a valid next edge 
         if (v != -1 && isValidNextEdge(u, v)) 
         { 
-            cout << (u+1) << "-" << (v+1) << " "; 
+            //<< (u+1) << "-" 
+            cout << (v+1) << " "; 
             rmvEdge(u, v); 
             printEulerUtil(v); 
         } 
@@ -138,4 +140,24 @@ int Graph::DFSCount(int v, bool visited[])
             count += DFSCount(*i, visited); 
 
     return count; 
-} 
+}
+
+bool Graph::isEulerian()
+{
+    list<int>::iterator j; 
+    int order;
+
+    for (int i = 0; i < V; i++)
+    {
+        order = 0;
+        for (j = adj[i].begin(); j != adj[i].end(); ++j) 
+        {
+            if (*j != -1) 
+                order++; 
+        }
+        if(order%2!=0) return false;
+    }
+
+    return true;
+    
+}
