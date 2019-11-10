@@ -142,6 +142,7 @@ int Graph::DFSCount(int v, bool visited[])
     return count; 
 }
 
+// Check if graph is eulerian
 bool Graph::isEulerian()
 {
     list<int>::iterator j; 
