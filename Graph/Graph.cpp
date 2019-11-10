@@ -1,5 +1,42 @@
 #include "Graph.hpp"
 
+// Manual constructor
+Graph::Graph(int V)
+{
+    this->V = V; 
+    adj = new list<int>[V];
+}
+
+// Simple destructor
+Graph::~Graph()
+{
+    delete [] adj;
+}
+
+Graph::Graph(string filename)
+{
+    int swap0, swap1;
+    fstream in(inputpath + filename);
+
+    if(!in)
+    {
+        this->V = 0;
+        adj = new list<int>[V];
+    }
+
+    in >> this->V;
+    adj = new list<int>[V];
+
+    while (!in.eof())
+    {
+        in >> swap0;
+        in >> swap1;
+
+        addEdge((swap0-1), (swap1-1));
+    }
+    
+}
+
 /* The main function that print Eulerian Trail. It first finds an odd 
 degree vertex (if there is any) and then calls printEulerUtil() 
 to print the path */
