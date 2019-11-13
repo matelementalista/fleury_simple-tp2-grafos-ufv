@@ -5,7 +5,7 @@ WARN=-Wall
 
 CCFLAGS=$(WARN)
 
-SRC= Graph/*.cpp
+SRC= Graph/*.cpp inputGenerator/*.cpp
 
 all:
 	$(CCO) -o $(TARGET) $(SRC) main.cpp $(CCFLAGS) -lm -O3

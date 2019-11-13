@@ -1,15 +1,17 @@
 using namespace std;
 #include "Graph/Graph.hpp"
+#include "inputGenerator/inputGenerator.hpp"
 
 void showMenu()
 {
-    cout << "-------------------------------------" << endl;
-    cout << "     TP2 de Grafos - Ciclo de Euler  " << endl;
-    cout << "-------------------------------------" << endl;
+    cout << "--------------------------------------------------" << endl;
+    cout << "          TP2 de Grafos - Ciclo de Euler          " << endl;
+    cout << "--------------------------------------------------" << endl;
     cout << "1 - Abrir arquivo e mostrar ciclo" << endl;
+    cout << "2 - Gerar grafo euleriano aleatorio em arquivo" << endl;
     cout << endl;
     cout << "9 - Sair" << endl;
-    cout << "-------------------------------------" << endl;
+    cout << "--------------------------------------------------" << endl;
  }
 
 int main() 
@@ -18,22 +20,26 @@ int main()
     char selection = 'a';
     string selectionAux;
     Graph * graph;
+    unsigned int edg, arr;
 
     showMenu();
 
     while (1)
     {
         
-        try
-        {
-            getline(cin, selectionAux, '\n');
-            selection = selectionAux[0];
+        while(1){
+            try
+            {
+                getline(cin, selectionAux, '\n');
+                selection = selectionAux[0];
+                break;
+            }
+            catch(const std::exception& e)
+            {
+                cout << "Digite um valor válido!" << endl;
+            }
         }
-        catch(const std::exception& e)
-        {
-            cout << "Digite um valor válido!" << endl;
-        }
-        
+
         switch (selection)
         {
 
@@ -61,6 +67,42 @@ int main()
                 cout << "Erro! Arquivo não existente!" << endl;
             }
 
+            break;
+
+        case '2':
+            cout << "Digite o nome do arquivo. Ele ficara na pasta input:" << endl;
+            getline(cin, filename, '\n');
+
+            cout << "Digite a quantidade de vertices:" << endl;
+
+            while(1){
+                try
+                {
+                    getline(cin, selectionAux, '\n');
+                    edg = stoul(selectionAux);
+                    break;
+                }
+                catch(const std::exception& e)
+                {
+                    cout << "Digite um valor válido!" << endl;
+                }
+            }
+
+            cout << "Digite a quantidade de arestas (precisa ser um numero par):" << endl;
+            while(1) {
+                try
+                {
+                    getline(cin, selectionAux, '\n');
+                    arr = stoul(selectionAux)/2;
+                    break;
+                }
+                catch(const std::exception& e)
+                {
+                    cout << "Digite um valor válido!" << endl;
+                }
+            }
+
+            inputGeneratorCreateNewGraph(edg, arr, filename);
             break;
 
         case '9':
