@@ -1,16 +1,5 @@
 #include "Graph.hpp"
 
-Graph::Graph(int V)
-{
-    this->V = V; 
-    adj = new list<int>[V];
-}
-
-Graph::~Graph()
-{
-    delete [] adj;
-}
-
 Graph::Graph(string filename)
 {
     int swap0, swap1;
@@ -37,10 +26,15 @@ Graph::Graph(string filename)
     
 }
 
+Graph::~Graph()
+{
+    delete [] adj;
+}
+
 void Graph::printEulerTour() 
 { 
     int u = 0; 
-    for (int i = 0; i < V; i++) 
+    for (size_t i = 0; i < V; i++) 
         if (adj[i].size() & 1) 
             { u = i; break; } 
  
@@ -87,7 +81,13 @@ bool Graph::isValidNextEdge(int u, int v)
     addEdge(u, v); 
 
     return (count1 > count2)? false: true; 
-} 
+}
+
+void Graph::addEdge(int u, int v)
+{
+    adj[u].push_back(v);
+    adj[v].push_back(u);
+}
 
 void Graph::rmvEdge(int u, int v) 
 {
@@ -116,7 +116,7 @@ bool Graph::isEulerian()
     list<int>::iterator j; 
     int order;
 
-    for (int i = 0; i < V; i++)
+    for (size_t i = 0; i < V; i++)
     {
         order = 0;
         for (j = adj[i].begin(); j != adj[i].end(); ++j) 
