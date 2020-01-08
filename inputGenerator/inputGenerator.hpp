@@ -7,7 +7,8 @@
     #include <fstream>
     #include <string>
     #include <exception>
-    #include<stdlib.h>
+    #include <stdlib.h>
+    #include <time.h>
     #include "../constants.hpp"
 
     void inputGeneratorCreateNewGraph(unsigned int edg, unsigned int arr, string filename);
